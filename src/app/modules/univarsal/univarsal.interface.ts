@@ -1,15 +1,15 @@
 
 
 export type TProjects = {
-  heading: string;
+  title: string;
   subTitle: string;
-  para: string;
+  descriptions: string;
   img: string;
   technology: string[];
-  para1: string;
   liveSideLink: string;
   githubBackendLink: string;
   gitHubFrontendLink: string;
+  category:string
 }
 
 

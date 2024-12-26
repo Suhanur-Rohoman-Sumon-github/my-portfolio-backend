@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TProjects } from "./univarsal.interface";
 import { blogModel, ExperienceModel, projectModel } from "./univarsal.model";
 
@@ -17,17 +18,22 @@ const createBlogInDb = async (payload: TProjects) => {
   return result;
 };
 const createExperienceInDb = async (payload: TProjects) => {
-  const newUser = payload;
   
-  const result = await ExperienceModel.create(newUser);
+  
+  
+  const result = await ExperienceModel.create(payload);
 
   return result;
 };
 
-const getAllProjectFromDb = async () => {
+const getAllProjectFromDb = async (query: any) => {
+
   
   
-  const result = await projectModel.find();
+  const filter = query.category ? { category: query.category } : {};
+
+  const result = await projectModel.find(filter);
+  
 
   return result;
 };
@@ -50,14 +56,15 @@ const getAllExperienceFromDb = async () => {
 const getSingleBlogsFromDb = async (blogId:string) => {
   
   
-  const result = await ExperienceModel.findOne({id:blogId});
+  const result = await blogModel.findOne({_id:blogId});
+  
 
   return result;
 };
 const getSingleProjectsFromDb = async (projectId:string) => {
   
   
-  const result = await ExperienceModel.findOne({id:projectId});
+  const result = await projectModel.findOne({_id:projectId});
 
   return result;
 };

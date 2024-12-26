@@ -20,7 +20,7 @@ const createProjects = catchAsync(async (req, res) => {
 const createExperience = catchAsync(async (req, res) => {
   
 
-  const result = await ProjectServices.createProjectInDb(req.body);
+  const result = await ProjectServices.createExperienceInDb(req.body);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -32,7 +32,7 @@ const createExperience = catchAsync(async (req, res) => {
 const createBlog = catchAsync(async (req, res) => {
   
 
-  const result = await ProjectServices.createProjectInDb(req.body);
+  const result = await ProjectServices.createBlogInDb(req.body);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -43,20 +43,20 @@ const createBlog = catchAsync(async (req, res) => {
 });
 const getAllProjectFromDb = catchAsync(async (req, res) => {
   
-
-  const result = await ProjectServices.createProjectInDb(req.body);
+  const result = await ProjectServices.getAllProjectFromDb(req.query);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: 'Project is retrieve successfully',
+    message: 'Projects retrieved successfully',
     data: result,
   });
 });
+
 const getALLBlogs = catchAsync(async (req, res) => {
   
 
-  const result = await ProjectServices.createProjectInDb(req.body);
+  const result = await ProjectServices.getAllBlogsFromDb();
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -66,9 +66,11 @@ const getALLBlogs = catchAsync(async (req, res) => {
   });
 });
 const getSingleBLogs = catchAsync(async (req, res) => {
+
+  const {blogId} = req.params;
   
 
-  const result = await ProjectServices.createProjectInDb(req.body);
+  const result = await ProjectServices.getSingleBlogsFromDb(blogId);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -78,21 +80,23 @@ const getSingleBLogs = catchAsync(async (req, res) => {
   });
 });
 const getSingleProjects = catchAsync(async (req, res) => {
-  
+  const {projectId} = req.params;
+  console.log(projectId);
 
-  const result = await ProjectServices.createProjectInDb(req.body);
+  const result = await ProjectServices.getSingleProjectsFromDb(projectId);
+  console.log(result);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: 'Blog is retrieve successfully',
+    message: 'Project is retrieve successfully',
     data: result,
   });
 });
 const getAllExperience = catchAsync(async (req, res) => {
   
 
-  const result = await ProjectServices.createProjectInDb(req.body);
+  const result = await ProjectServices.getAllExperienceFromDb();
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,

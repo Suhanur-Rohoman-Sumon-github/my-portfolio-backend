@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { TBlogs, TExperience, TProjects } from "./univarsal.interface";
 
 const ProjectsSchema = new mongoose.Schema<TProjects>({
-  heading: {
+  title: {
     type: String,
     required: true,
   },
@@ -10,7 +10,7 @@ const ProjectsSchema = new mongoose.Schema<TProjects>({
     type: String,
     required: true,
   },
-  para: {
+  descriptions: {
     type: String,
     required: true,
   },
@@ -22,7 +22,7 @@ const ProjectsSchema = new mongoose.Schema<TProjects>({
     type: [String],
     required: true,
   },
-  para1: {
+  category: {
     type: String,
     required: true,
   },
@@ -46,7 +46,7 @@ export const projectModel = mongoose.model<TProjects>('Projects', ProjectsSchema
 const BlogSchema = new mongoose.Schema<TBlogs>(
   {
     title: { type: String, required: true },
-    date: { type: String, required: true },
+    date: { type: String, default: new Date().toDateString() },
     description: { type: String, required: true },
     image: { type: String, required: true },
   },
